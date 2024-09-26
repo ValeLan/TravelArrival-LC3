@@ -4,6 +4,7 @@ function App() {
 
   return (
     <>
+    <p>Hola soy un mensaje</p>
     </>
   )
 }
