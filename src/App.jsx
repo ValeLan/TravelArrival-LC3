@@ -1,10 +1,11 @@
 import './App.css'
+import Admin from './components/admin/Admin'
 
 function App() {
 
   return (
     <>
-    <p>Hola soy un mensaje</p>
+    <Admin/>
     </>
   )
 }
