@@ -28,7 +28,7 @@ function App() {
     },
     { path: "/driver", element: <Driver travels={travels} /> },
     {
-      path: "/driver/travel/:id",
+      path: "/details/:id",
       element: <DriverDetails travels={travels} />,
     },
     { path: "*", element: <NotFound /> },
