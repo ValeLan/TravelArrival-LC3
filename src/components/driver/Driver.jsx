@@ -2,8 +2,23 @@ import PropTypes from "prop-types"
 import { Card, Row, Col, Button} from "react-bootstrap";
 import { passengers } from "../../data/passengers";
 import "./driver.css"
+// import { useNavigate } from "react-router-dom";
 
 const Driver = ({ travels }) => {
+  // const navigate = useNavigate();
+  // const clickHandle = () => {
+  //   // setTitle(title);
+  //   navigate(`/details/${id}`, {
+  //     state: {
+  //       travel,
+  //       summary,
+  //       author,
+  //       pageCount,
+  //       rating,
+  //       imageUrl,
+  //     },
+  //   });
+  // };
   
   return (
     <div className="text-center d-flex flex-column container-driver">
