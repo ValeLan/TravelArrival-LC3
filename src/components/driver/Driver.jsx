@@ -2,13 +2,30 @@ import PropTypes from "prop-types"
 import { Card, Row, Col, Button} from "react-bootstrap";
 import { passengers } from "../../data/passengers";
 import "./driver.css"
+// import { useNavigate } from "react-router-dom";
 
 const Driver = ({ travels }) => {
+  // const navigate = useNavigate();
+  // const clickHandle = () => {
+  //   // setTitle(title);
+  //   navigate(`/details/${id}`, {
+  //     state: {
+  //       travel,
+  //       summary,
+  //       author,
+  //       pageCount,
+  //       rating,
+  //       imageUrl,
+  //     },
+  //   });
+  // };
   
   return (
     <div className="text-center d-flex flex-column container-driver">
       <div className="title-container text-center mb-5">
-        <h1 className="pb-5">Mis viajes</h1>
+        <h1 className="pb-5">
+          Mis viajes <img src="../public/icon-bus.png" alt="pequeña imagen de un autobus" style={{width: 40}}/>
+        </h1>
       </div>
 
       <Row>

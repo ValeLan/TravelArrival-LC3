@@ -7,11 +7,13 @@ import Login from './components/login/Login'
 import { travels } from './data/travels'
 import { useState } from 'react';
 import NotFound from './components/routes/NotFound';
-import ClientTravel from './components/client/ClientTravel';
 
+import { useFetch } from "./useFetch";
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
+  
+  const {data, error} = useFetch("/Travel/Historical", "GET");
 
   const loginHandler = () => {
     setIsLogged(true);
@@ -30,7 +32,7 @@ function App() {
     },
     { path: "/driver", element: <Driver travels={travels} /> },
     {
-      path: "/driver/travel/:id",
+      path: "/details/:id",
       element: <DriverDetails travels={travels} />,
     },
     { path: "*", element: <NotFound /> },
@@ -38,11 +40,9 @@ function App() {
 
   return (
     <>
-      {/* <RouterProvider router={router} /> */}
-      <ClientTravel travels={travels}/>
+      <RouterProvider router={router} />
     </>
   );
 }
 
 export default App
-// tpi
