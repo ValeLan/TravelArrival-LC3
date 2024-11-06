@@ -8,8 +8,12 @@ import { travels } from './data/travels'
 import { useState } from 'react';
 import NotFound from './components/routes/NotFound';
 
+import { useFetch } from "./useFetch";
+
 function App() {
   const [isLogged, setIsLogged] = useState(false);
+  
+  const {data, error} = useFetch("/Travel/Historical", "GET");
 
   const loginHandler = () => {
     setIsLogged(true);
@@ -42,4 +46,3 @@ function App() {
 }
 
 export default App
-// tpi
