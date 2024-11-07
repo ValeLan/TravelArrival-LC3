@@ -1,5 +1,7 @@
 import AdminCards from "./AdminCards"
 
+
+// fondo con titulos de choferes, barrios, escuelas
 const Admin = () => {
   return (
     <>

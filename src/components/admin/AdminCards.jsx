@@ -1,13 +1,34 @@
-import Card from "react-bootstrap/Card";
+//import Card from "react-bootstrap/Card";
 
-const AdminCards = () => {
-  return (
-    <>
-      <Card>
-        <Card.Body>Keila</Card.Body>
-      </Card>
-    </>
-  );
-};
 
-export default AdminCards;
+//cards horizontales con choferes//barrios//escuelas
+// const AdminCards = () => {
+//   return (
+  //   <> 
+  //   const drivers = drivers.map((driver) => {
+  //     return {driver.name}
+
+  //   } );
+  //     <Card>
+  //       {<Card.Body>
+  //         {driver.nombre}
+  //       </Card.Body>}
+  //     </Card>
+
+  //     <Card>
+  //       {<Card.Body>
+  //         {driver.nombre}
+  //       </Card.Body>}
+  //     </Card>
+
+  //     <Card>
+  //       {<Card.Body>
+  //         {driver.nombre}
+  //       </Card.Body>}
+  //     </Card>
+
+  //   </>
+  // );
+//};
+
+//export default AdminCards;
