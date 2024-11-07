@@ -7,13 +7,16 @@ import Login from './components/login/Login'
 import { travels } from './data/travels'
 import { useState } from 'react';
 import NotFound from './components/routes/NotFound';
+import Admin from './components/admin/Admin';
+
 
 import { useFetch } from "./useFetch";
+import AdminCards from './components/admin/AdminCards';
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
-  
-  const {data, error} = useFetch("/Travel/Historical", "GET");
+
+  const { data, error } = useFetch("/Travel/Historical", "GET");
 
   const loginHandler = () => {
     setIsLogged(true);
@@ -36,6 +39,12 @@ function App() {
       element: <DriverDetails travels={travels} />,
     },
     { path: "*", element: <NotFound /> },
+    {
+      path: "/admin", element: <Admin />
+    },
+    {
+      path: "/admin-cards", element: <AdminCards />
+    },
   ]);
 
   return (
