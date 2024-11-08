@@ -10,11 +10,11 @@ import NotFound from './components/routes/NotFound';
 import ClientForm from "./components/client/ClientForm"
 import { useFetch } from "./useFetch";
 import ClientTravel from './components/client/ClientTravel';
-
 function App() {
   const [isLogged, setIsLogged] = useState(false);
   
   const {data, error} = useFetch("/Travel/Historical", "GET");
+  
 
   const loginHandler = () => {
     setIsLogged(true);
@@ -41,7 +41,6 @@ function App() {
     },
     { path: "*", element: <NotFound /> },
   ]);
-
   return (
     <>
       <RouterProvider router={router} />
