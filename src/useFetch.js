@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 export function useFetch(url, method) {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,11 +22,13 @@ export function useFetch(url, method) {
       } catch (error) {
         setError(error.message);
         console.error("Error al obtener los viajes:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
     fetchData();
   }, [url, method]);
 
-  return { data, error };
+  return { data, error, isLoading };
 }

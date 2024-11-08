@@ -2,40 +2,25 @@ import PropTypes from "prop-types"
 import { Card, Row, Col, Button} from "react-bootstrap";
 import { passengers } from "../../data/passengers";
 import "./driver.css"
-// import { useNavigate } from "react-router-dom";
 
-const Driver = ({ travels }) => {
-  // const navigate = useNavigate();
-  // const clickHandle = () => {
-  //   // setTitle(title);
-  //   navigate(`/details/${id}`, {
-  //     state: {
-  //       travel,
-  //       summary,
-  //       author,
-  //       pageCount,
-  //       rating,
-  //       imageUrl,
-  //     },
-  //   });
-  // };
-  
+const Driver = ({ data, isLoading }) => {
+  if (isLoading) return <p>Cargando datos...</p>;
   return (
     <div className="text-center d-flex flex-column container-driver">
       <div className="title-container text-center mb-5">
         <h1 className="pb-5">
-          Mis viajes <img src="../public/icon-bus.png" alt="pequeña imagen de un autobus" style={{width: 40}}/>
+          Mis viajes
         </h1>
       </div>
 
       <Row>
-        {travels.map((travel) => (
+        {data == null ? <p>No hay viajes</p> : data?.map((travel) => (
           <Col key={travel.id} md={4} className="mb-4">
             <Card className="shadow h-100 p-3 card-border">
               <Card.Body className="">
                 <h2 className="mb-3">Viaje {travel.id}</h2>
                 <Card.Text className="text-start">
-                  <strong>Hora:</strong> {travel.hour}
+                  <strong>Hora de salida:</strong> {travel.hour}
                 </Card.Text>
                 <Card.Text className="text-start">
                   <strong>Capacidad:</strong> {travel.capacity}
@@ -72,7 +57,8 @@ const Driver = ({ travels }) => {
 };
 
 Driver.propTypes = {
-  travels: PropTypes.array,
+  data: PropTypes.array,
+  isLoading: PropTypes.bool,
 };
 
 export default Driver;

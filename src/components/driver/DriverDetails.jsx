@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import { Card, Row, Col, Button, ListGroup } from "react-bootstrap";
-import { passengers } from "../../data/passengers";
 import "./driver.css";
 
 const DriverDetails = ({travels}) => {
@@ -17,7 +16,7 @@ const DriverDetails = ({travels}) => {
               <Card.Body className="">
                 <h2 className="mb-3">Viaje {travel.id}</h2>
                 <Card.Text className="text-start">
-                  <strong>Hora:</strong> {travel.hour}
+                  <strong>Hora de salida:</strong> {travel.hour}
                 </Card.Text>
                 <Card.Text className="text-start">
                   <strong>Capacidad:</strong> {travel.capacity}
