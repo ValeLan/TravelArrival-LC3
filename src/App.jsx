@@ -10,6 +10,8 @@ import NotFound from './components/routes/NotFound';
 import ClientForm from "./components/client/ClientForm"
 import { useFetch } from "./useFetch";
 import ClientTravel from './components/client/ClientTravel';
+import Admin from './components/admin/Admin';
+
 function App() {
   const [isLogged, setIsLogged] = useState(false);
   
@@ -31,6 +33,7 @@ function App() {
     //     </Protected>
     //   ),
     { path: "/client", element: <ClientForm /> },
+    { path: "/admin", element: <Admin/> },
     // },
     { path: "/driver", element: <Driver travels={travels} /> },
     { path: "/client", element: <ClientForm/> },

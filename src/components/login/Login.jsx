@@ -1,28 +1,71 @@
 import React, {useState} from "react";
+import * as jwtDecode from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "./login.css"; 
-import { useAuthenticate } from "../../useAuthenticate";
+
 
 const Login = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [token, setToken] = useState(null);
+  const [data, setData] = useState(null);
   const [error, setError] = useState(null);
-
   
-  const handleLogin = async () => {
-    
-    const { data, error } = useAuthenticate({ email, password });
-    if (data) {
-      setToken(data);
-      console.log("Token recibido:", data); 
-    } else if (error) {
-      setError(error);
-      console.error("Error de autenticación:", error);
+  const navigate = useNavigate();
+
+  const fetchToken = async ({email, password}) => {
+
+    if (!email || !password) {
+      setError("Por favor, ingresa email y contraseña.");
+      return;
+    }
+
+    try {
+      const response = await fetch(`https://localhost:7016/api/Authenticate`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      }
+
+      const jsonData = await response.text();
+      setData(jsonData);
+      const tokenParts = jsonData.split(".");
+      if (tokenParts.length < 2) throw new Error("Token no válido");
+
+      const payload = JSON.parse(atob(tokenParts[1]));
+      const role = payload.role;
+
+      if (role === "Admin") {
+        navigate("/admin");
+      } else if (role === "Passenger") {
+        navigate("/client");
+      } else if (role === "Driver") {
+        navigate("/driver");
+      } else {
+        throw new Error("Rol no reconocido");
+      }
+
+      console.log("El token es:", jsonData);
+    } catch (error) {
+      setError(error.message);
+      console.error("Error al obtener el Token:", error);
     }
   };
+
+  const handleLogin = async () => {
+    await fetchToken({email, password});
+    }
 
   return (
     <div className="container-login">
@@ -47,7 +90,11 @@ const Login = () => {
           />
         </Form.Group>
         <Form.Group className="mt-4 mb-2">
-          <Button variant="primary" className=" px-4" onClick={handleLogin}>
+          <Button 
+          variant="primary" 
+          className=" px-4" 
+          onClick={handleLogin}
+          disabled = {!email || !password}>
             Ingresar
           </Button>
         </Form.Group>
@@ -58,6 +105,7 @@ const Login = () => {
       </Form>
     </div>    
   );
+  
 };
 
 export default Login;
