@@ -3,6 +3,17 @@ import { Card, Row, Col, Button, ListGroup } from "react-bootstrap";
 import "./driver.css";
 
 const DriverDetails = ({travels}) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+
+  const { id, fullName, hour, capacity, state, school, driver, district, passenger } = location.state;
+
+
+  const clickHandler = () => {
+    navigate("/");
+  };
+
   return (
     <div className="text-center d-flex flex-column">
       <div className="title-container text-center mb-5">

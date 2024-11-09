@@ -7,9 +7,10 @@ export function useFetch(url, method) {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const response = await fetch(`https://localhost:7016/api${url}`, {
+      try {                         //https://localhost:7016/api${url}
+        const response = await fetch(`http://localhost:5165/api${url}`, {
           method: method,
+          //GET-DELETE
         });
 
         if (!response.ok) {

@@ -3,16 +3,18 @@ import { Card, Button, Row, Col } from "react-bootstrap";
 import PropTypes from "prop-types";
 import "./Client.css";
 
-const ClientTravel = ({ data }) => {
+const ClientTravel = ({ data , isLoading }) => {
+  if (isLoading) return <p>Cargando datos...</p>
+
   return (
     <div className="containerClientTravel">
       <Row className="justify-content-center">
         {data?.map((travel) => (
           <Col key={travel.id} md={4} className="mb-4 w-50">
-            <Card>
+            <Card className="h-100">
               <Card.Body>
-                <Card.Title className="mb-4">
-                  Viaje a {travel.school.name}
+                <Card.Title className="mb-4 fs-3">
+                  Viaje a escuela: <br />{travel.school.name}
                 </Card.Title>
                 <Card.Text>
                   <strong>Hora de salida:</strong> {travel.hour}

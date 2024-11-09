@@ -12,9 +12,25 @@ import { useFetch } from "./useFetch";
 import ClientTravel from './components/client/ClientTravel';
 function App() {
   const [isLogged, setIsLogged] = useState(false);
+  const [dataFiltered, setDataFiltered] = useState([]);
   
-  const {data, error} = useFetch("/Travel/Historical", "GET");
+  const {data, error, isLoading} = useFetch("/Travel/Historical", "GET");
   
+  // const saveAllData = (data) => {
+  //   const mappingData = data?.map(
+  //     {
+  //     id: data.id,
+  //     hour: data.hour,
+  //     capacity: data.capacity,
+  //     state: data.state,
+  //     school: data.school,
+  //     driver: data.driver,
+  //     district: data.district,
+  //     passenger: data.passenger,
+  //   }
+  //   )
+  //   setDataFiltered(mappingData)
+  // }
 
   const loginHandler = () => {
     setIsLogged(true);
@@ -32,9 +48,9 @@ function App() {
     //   ),
     { path: "/client", element: <ClientForm /> },
     // },
-    { path: "/driver", element: <Driver travels={travels} /> },
+    { path: "/driver", element: <Driver data={data} isLoading={isLoading}/> },
     { path: "/client", element: <ClientForm/> },
-    { path: "/client-travel", element: <ClientTravel data={data}/> },
+    { path: "/client-travel", element: <ClientTravel data={data} isLoading={isLoading}/> },
     {
       path: "/details/:id",
       element: <DriverDetails travels={travels} />,
