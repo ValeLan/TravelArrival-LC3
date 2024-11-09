@@ -4,10 +4,13 @@ import { useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "./login.css"; 
+import { AuthContext } from "./AuthContext";
 
 
 const Login = () => {
 
+  const { saveToken } = useContext(AuthContext);
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [data, setData] = useState(null);
@@ -39,6 +42,7 @@ const Login = () => {
       }
 
       const jsonData = await response.text();
+      saveToken(jsonData);
       setData(jsonData);
       const tokenParts = jsonData.split(".");
       if (tokenParts.length < 2) throw new Error("Token no válido");

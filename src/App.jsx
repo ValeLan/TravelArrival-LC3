@@ -11,6 +11,7 @@ import ClientForm from "./components/client/ClientForm"
 import { useFetch } from "./useFetch";
 import ClientTravel from './components/client/ClientTravel';
 import Admin from './components/admin/Admin';
+import { AuthProvider } from './AuthContext'; 
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
@@ -25,16 +26,8 @@ function App() {
   const router = createBrowserRouter([
     { path: "/", element: <Login /> },
     { path: "/login", element: <Login onLogin={loginHandler} /> },
-    // {
-    //   path: "/driver",
-    //   element: (
-    //     <Protected isSignedIn={isLogged}>
-    //       <Driver />
-    //     </Protected>
-    //   ),
     { path: "/client", element: <ClientForm /> },
     { path: "/admin", element: <Admin/> },
-    // },
     { path: "/driver", element: <Driver travels={travels} /> },
     { path: "/client", element: <ClientForm/> },
     { path: "/client-travel", element: <ClientTravel data={data}/> },
@@ -46,7 +39,9 @@ function App() {
   ]);
   return (
     <>
-      <RouterProvider router={router} />
+      <AuthProvider>
+        <RouterProvider router={router} />
+    </AuthProvider>
     </>
   );
 }

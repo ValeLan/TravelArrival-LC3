@@ -10,6 +10,7 @@ const ClientForm = () => {
         <Form
           border="danger"
           className="clientForm d-flex flex-column justify-content-center w-75 rounded  p-5"
+          style={{ backgroundColor: "#134759c" }}
         >
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
             <FloatingLabel
