@@ -12,7 +12,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
-
+  
   const navigate = useNavigate();
 
   const fetchToken = async ({email, password}) => {
