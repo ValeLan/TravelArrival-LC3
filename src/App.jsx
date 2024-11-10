@@ -8,36 +8,23 @@ import { travels } from './data/travels'
 import { useState } from 'react';
 import NotFound from './components/routes/NotFound';
 import ClientForm from "./components/client/ClientForm"
-import { useFetch } from "./useFetch";
 import ClientTravel from './components/client/ClientTravel';
+import Admin from './components/admin/Admin';
+import Home from './components/home/Home';
+import useFetch from './components/hooks/useFetch';
+
 function App() {
   const [isLogged, setIsLogged] = useState(false);
   const [dataFiltered, setDataFiltered] = useState([]);
   
   const {data, error, isLoading} = useFetch("/Travel/Historical", "GET");
   
-  // const saveAllData = (data) => {
-  //   const mappingData = data?.map(
-  //     {
-  //     id: data.id,
-  //     hour: data.hour,
-  //     capacity: data.capacity,
-  //     state: data.state,
-  //     school: data.school,
-  //     driver: data.driver,
-  //     district: data.district,
-  //     passenger: data.passenger,
-  //   }
-  //   )
-  //   setDataFiltered(mappingData)
-  // }
-
   const loginHandler = () => {
     setIsLogged(true);
   };
 
   const router = createBrowserRouter([
-    { path: "/", element: <Login /> },
+    { path: "/", element: <Home /> },
     { path: "/login", element: <Login onLogin={loginHandler} /> },
     // {
     //   path: "/driver",
@@ -47,14 +34,15 @@ function App() {
     //     </Protected>
     //   ),
     { path: "/client", element: <ClientForm /> },
+    { path: "/admin", element: <Admin/> },
     // },
     { path: "/driver", element: <Driver data={data} isLoading={isLoading}/> },
-    { path: "/client", element: <ClientForm/> },
-    { path: "/client-travel", element: <ClientTravel data={data} isLoading={isLoading}/> },
     {
       path: "/details/:id",
       element: <DriverDetails travels={travels} />,
     },
+    { path: "/client", element: <ClientForm/> },
+    { path: "/client-travel", element: <ClientTravel data={data} isLoading={isLoading}/> },
     { path: "*", element: <NotFound/>},
 ]);
   return (

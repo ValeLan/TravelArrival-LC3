@@ -1,10 +1,10 @@
 import React from "react";
-import { Card, Button, Row, Col } from "react-bootstrap";
+import { Card, Button, Row, Col, Spinner } from "react-bootstrap";
 import PropTypes from "prop-types";
 import "./Client.css";
 
 const ClientTravel = ({ data , isLoading }) => {
-  if (isLoading) return <p>Cargando datos...</p>
+  if (isLoading) return <Spinner/>;
 
   return (
     <div className="containerClientTravel">

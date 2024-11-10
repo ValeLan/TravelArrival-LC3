@@ -5,16 +5,16 @@ import "./driver.css"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const DriverItem = ({ id, hour, capacity, state, school, driver, district, passenger }) => {
+const DriverItem = ({ id, hour, capacity, state, school, driver, district, passengers }) => {
     const [title, setTitle] = useState(school.name);
 
     const navigate = useNavigate();
 
-    const clickHandle = () => {
+    const clickHandler = () => {
         setTitle(school.name);
         navigate(`/details/${id}`, {
             state: {
-                id, hour, capacity, state, school, driver, district, passenger
+                id, hour, capacity, state, school, driver, district, passengers
             }
         });
     };
@@ -50,7 +50,7 @@ const DriverItem = ({ id, hour, capacity, state, school, driver, district, passe
                         <strong>Pasajeros:</strong> {passengers.length}
                     </Card.Text>
 
-                    <Button className="mt-3 btn-details" onClick={clickHandle}>Details</Button>
+                    <Button className="mt-3 btn-details" onClick={clickHandler}>Details</Button>
                     {/* PODRIAMOS MOSTRAR SOLO LA CANTIDAD DE PASAJEROS INSCRIPTOS Y CUANDO QUIERA MAS DETALLES EL CHOFER, QUE UTILICE EL BOTON DE DETALLES Y AHI SI APAREZCA LA LISTA DE LOS PASAJEROS */}
                 </Card.Body>
             </Card>

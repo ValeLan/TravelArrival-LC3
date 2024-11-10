@@ -1,9 +1,12 @@
+import "./home.css"
+
 const Home = () => {
 
   return (
-    <>
-        <h1>Bienvenido!</h1>
-    </>
+    <div className="container-home">
+        <h1 className="text-light">Bienvenido a Travel Arrival!</h1>
+        
+    </div>
   )
 }
 

@@ -1,12 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState} from "react";
 
-export function useAuthenticate({email, password}) {
+export function useAuthenticate() {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
-  useEffect(() => {
-    const fetchToken = async () => {
-      try {
-        const response = await fetch(`https://localhost:7016/api/Authenticate`, {
+
+    const fetchToken = async ({email, password}) => {
+
+      if (!email || !password) {
+        setError("Por favor, ingresa email y contraseña.");
+        return;
+      }
+      
+      try {                         //https://localhost:7016/api/Authenticate
+        const response = await fetch(`http://localhost:5165/api/Authenticate`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -31,7 +37,6 @@ export function useAuthenticate({email, password}) {
     };
 
     fetchToken();
-  }, [email, password]);
 
   return { data, error };
-}
+  }
