@@ -2,8 +2,12 @@ import PropTypes from "prop-types";
 import { Card, Row, Col, Button, ListGroup } from "react-bootstrap";
 import { passengers } from "../../data/passengers";
 import "./driver.css";
+import { useContext } from "react";
+import { TravelsContext } from "../../TravelsContext";
 
-const DriverDetails = ({travels}) => {
+const { travels, error } = useContext(TravelsContext);
+
+const DriverDetails = () => {
   return (
     <div className="text-center d-flex flex-column">
       <div className="title-container text-center mb-5">
@@ -70,10 +74,6 @@ const DriverDetails = ({travels}) => {
       </Row>
     </div>
   );
-};
-
-DriverDetails.propTypes = {
-  travels: PropTypes.array,
 };
 
 export default DriverDetails;
