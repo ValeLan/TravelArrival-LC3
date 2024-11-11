@@ -19,7 +19,6 @@ export default function useFetch (url, method) {
 
         const jsonData = await response.json();
         setData(jsonData);
-        console.log("Lista de viajes:", jsonData);
       } catch (error) {
         setError(error.message);
         console.error("Error al obtener los viajes:", error);
