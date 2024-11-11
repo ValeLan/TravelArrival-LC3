@@ -1,16 +1,17 @@
-import React, { useEffect } from "react";
-import { Card, Button, Row, Col } from "react-bootstrap";
+import { useContext, useEffect } from "react";
+import { Card, Button, Row, Col, Spinner } from "react-bootstrap";
 import "./Client.css";
-import usePassengerTravels from "../../data/usePassengerTravels";
+import usePassengerTravels from "../hooks/usePassengerTravels";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../services/authentication/AuthContext";
 
 const ClientTravel = () => {
-
+  const {token} = useContext(AuthContext);
   const navigate = useNavigate();
   const { travel, error } = usePassengerTravels();
 
   if(travel == null){
-    navigate("/TravelsCards");
+    navigate("/travels-cards");
   }
   const cancelTravel = async () => {
     try {
@@ -29,7 +30,7 @@ const ClientTravel = () => {
     } catch (error) {
       console.error("Error:", error);
     }
-    navigate("/TravelsCards");
+    navigate("/travels-cards");
   }
 
   useEffect(() => {
@@ -41,7 +42,7 @@ const ClientTravel = () => {
 
   if (error) return <p>{error}</p>;
 
-  if (!travel) return <p>Cargando viajes..</p>;
+  if (!travel) return <Spinner/>;
 
   return (
     <div className="containerClientTravel">
@@ -81,4 +82,4 @@ const ClientTravel = () => {
   );
 };
 
-export default ClientTravel;
+export default ClientTravel;

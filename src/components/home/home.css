@@ -1,6 +1,6 @@
 .container-home {
-    background-color: #34759c;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -9,4 +9,5 @@
     padding: 0;
     position: relative;
     overflow: hidden;
+    background: linear-gradient(to right, #34759c, #103f5d);   
 }
