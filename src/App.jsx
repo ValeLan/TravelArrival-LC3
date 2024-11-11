@@ -10,11 +10,14 @@ import NotFound from './components/routes/NotFound';
 import ClientForm from "./components/client/ClientForm"
 import ClientTravel from './components/client/ClientTravel';
 import Admin from './components/admin/Admin';
+import Home from './components/home/Home';
+import useFetch from './components/hooks/useFetch';
 import { AuthProvider } from './AuthContext'; 
 import TravelsCards from './components/client/TravelsCards';
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
+  const [dataFiltered, setDataFiltered] = useState([]);
   
   const loginHandler = () => {
     setIsLogged(true);
@@ -22,7 +25,7 @@ function App() {
 
 
   const router = createBrowserRouter([
-    { path: "/", element: <Login /> },
+    { path: "/", element: <Home /> },
     { path: "/login", element: <Login onLogin={loginHandler} /> },
     { path: "/client", element: <ClientForm /> },
     { path: "/admin", element: <Admin/> },

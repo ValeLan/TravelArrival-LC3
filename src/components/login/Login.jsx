@@ -23,8 +23,8 @@ const Login = () => {
       return;
     }
 
-    try {
-      const response = await fetch(`https://localhost:7016/api/Authenticate`, {
+    try {                         //https://localhost:7016/api/Authenticate
+      const response = await fetch(`http://localhost:5165/api/Authenticate`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
