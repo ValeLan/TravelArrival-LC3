@@ -11,7 +11,13 @@ import Admin from "./components/admin/Admin";
 import AdminCards from "./components/admin/AdminCards";
 import ClientForm from "./components/client/ClientForm";
 import { useFetch } from "./useFetch";
+<<<<<<< HEAD
 import ClientTravel from "./components/client/ClientTravel";
+=======
+import ClientTravel from './components/client/ClientTravel';
+import Admin from './components/admin/Admin';
+import { AuthProvider } from './AuthContext'; 
+>>>>>>> 1bf4203c855b69a9e663224463fd701d0083ae8a
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
@@ -28,6 +34,14 @@ function App() {
   const router = createBrowserRouter([
     { path: "/", element: <Login /> },
     { path: "/login", element: <Login onLogin={loginHandler} /> },
+<<<<<<< HEAD
+=======
+    { path: "/client", element: <ClientForm /> },
+    { path: "/admin", element: <Admin/> },
+    { path: "/driver", element: <Driver travels={travels} /> },
+    { path: "/client", element: <ClientForm/> },
+    { path: "/client-travel", element: <ClientTravel data={data}/> },
+>>>>>>> 1bf4203c855b69a9e663224463fd701d0083ae8a
     {
       path: "/driver",
       element: (
@@ -52,8 +66,14 @@ function App() {
 
   return (
     <>
+<<<<<<< HEAD
       {" "}
       <RouterProvider router={router} />{" "}
+=======
+      <AuthProvider>
+        <RouterProvider router={router} />
+    </AuthProvider>
+>>>>>>> 1bf4203c855b69a9e663224463fd701d0083ae8a
     </>
   );
 }

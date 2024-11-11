@@ -3,25 +3,23 @@ import PropTypes from "prop-types";
 import { Link } from 'react-router-dom';
 import "./Admin.css"
 
-
-const AdminCards = ({ data, data2, data3, data4 }) => { 
+const AdminCards = ({ data, data2, data3, data4 }) => {
   const [selectedCard, setSelectedCard] = useState(null);
 
-  // Objeto de configuración de cada tarjeta
   const cardConfig = {
     data: { title: "Conductores", subtitle: "Esta es una lista de los conductores", content: data },
     data2: { title: "Escuelas", subtitle: "Esta es una lista de las escuelas", content: data2 },
     data3: { title: "Pasajeros", subtitle: "Esta es una lista de los pasajeros", content: data3 },
-    data4: { title: "Viajes", subtitle: "Esta es una lista de los viajes", content: data4 },
-  };
+    data4: { title: "Viajes", subtitle: "Esta es una lista de los viajes", content: data4 },};
 
   const renderCardContent = () => {
-    if (!selectedCard) {
+    if (!selectedCard || selectedCard.length === 0) {
       return <p className="text-danger">Error: {"Sin información"}</p>;
-    } return selectedCard.map(i => (
+    }
+    return selectedCard.map(i => (
       <div key={i.id} className="card mb-3">
         <div className="card-body">
-          <h5 className="card-title">{i.fullName}</h5>
+          <h5 className="card-title">{i.fullName || i.name}</h5>
           <p>{i.description || "Información adicional"}</p>
         </div>
       </div>
@@ -44,7 +42,8 @@ const AdminCards = ({ data, data2, data3, data4 }) => {
             <h6 className="card-subtitle mb-2 text-body-secondary">
               {Object.values(cardConfig).find(config => config.content === selectedCard).subtitle}
             </h6>
-            <p className="card-text">{renderCardContent()}</p>
+            <div className="card-text">{renderCardContent()}
+            </div>
             <Link to="./admin" className="card-link">Atrás</Link>
           </div>
         </div>
@@ -54,9 +53,9 @@ const AdminCards = ({ data, data2, data3, data4 }) => {
 };
 
 AdminCards.propTypes = {
-  data: PropTypes.array, 
-  data2: PropTypes.array, 
-  data3: PropTypes.array, 
+  data: PropTypes.array,
+  data2: PropTypes.array,
+  data3: PropTypes.array,
   data4: PropTypes.array,
 };
 
