@@ -1,16 +1,14 @@
-import React, {useState} from "react";
-import * as jwtDecode from "jwt-decode";
+import React, {useState, useContext} from "react";
 import { useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "./login.css"; 
-import { AuthContext } from "./AuthContext";
+import { AuthContext } from "../../AuthContext";
 
 
 const Login = () => {
 
   const { saveToken } = useContext(AuthContext);
-  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [data, setData] = useState(null);
@@ -53,7 +51,7 @@ const Login = () => {
       if (role === "Admin") {
         navigate("/admin");
       } else if (role === "Passenger") {
-        navigate("/client");
+        navigate("/client-travel");
       } else if (role === "Driver") {
         navigate("/driver");
       } else {
