@@ -1,5 +1,5 @@
 .container-login {
-  background-color: #34759c; 
+  background: linear-gradient(to left, #34759c, #103f5d);
   display: flex;
   justify-content: center;
   align-items: center; 
