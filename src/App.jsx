@@ -13,6 +13,7 @@ import useFetch from './components/hooks/useFetch';
 import { AuthProvider } from './components/services/authentication/AuthContext'; 
 import TravelsCards from './components/client/TravelsCards';
 import { TravelsProvider } from './components/services/travel/TravelsContext';
+import NavBar from './components/navBar/NavBar';
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
@@ -38,7 +39,7 @@ function App() {
   return (
     <>
       <AuthProvider>
-        <TravelsProvider>
+        <TravelsProvider>          
           <RouterProvider router={router} />
         </TravelsProvider>
       </AuthProvider>

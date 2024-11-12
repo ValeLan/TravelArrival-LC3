@@ -200,7 +200,7 @@ const ClientForm = () => {
             onClick={handleSignIn}
             disabled={!email || !fullName || !password || !dni || !phoneNumber}
           >
-            Elegir viaje
+            Registrarse
           </Button>
         </Form>
       </div>

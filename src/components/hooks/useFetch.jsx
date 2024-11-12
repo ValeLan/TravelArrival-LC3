@@ -28,9 +28,9 @@ export default function useFetch(url, method) {
     };
 
     fetchData().then((jsonData) => {
-      if (jsonData) {
-        console.log("Datos recibidos del fetch y asignados a data:", jsonData);
-      }
+      // if (jsonData) {
+      //   console.log("Datos recibidos del fetch y asignados a data:", jsonData);
+      // }
     });
 
   }, [url, method]);
