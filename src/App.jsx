@@ -15,6 +15,7 @@ import TravelsCards from './components/client/TravelsCards';
 import { TravelsProvider } from './components/services/travel/TravelsContext';
 import Unauthorized from './components/routes/Unauthorized';
 import Protected from './components/routes/Protected';
+import AdminDriver from './components/admin/AdminDriver';
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
@@ -37,6 +38,14 @@ function App() {
         </Protected>
       ),
     },
+    // {
+    //   path: "/admin-driver",
+    //   element: (
+    //     <Protected allowedRoles={["Admin"]}>
+    //       <AdminDriver />
+    //     </Protected>
+    //   ),
+    // },
     {
       path: "/driver",
       element: (

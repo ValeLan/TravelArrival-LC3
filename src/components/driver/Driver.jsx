@@ -6,31 +6,7 @@ import { useContext } from "react";
 import { AuthContext } from "../services/authentication/AuthContext";
 
 const Driver = ({ data, isLoading }) => {
-  //const { token } = useContext(AuthContext);
   if (isLoading) return <Spinner />;
-
-  // const myTravelsDriver = async () => {
-  //   try {
-  //     const response = await fetch(
-  //       "https://localhost:7016/api/Register/DropTravel",
-  //       {
-  //         method: "POST",
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //           "Content-Type": "application/json",
-  //         },
-  //       }
-  //     );
-
-  //     if (!response.ok) {
-  //       throw new Error(`Error cancelar el viaje: ${response.status}`);
-  //     }
-  //     console.log("El viaje fue cancelado exitosamente.");
-  //   } catch (error) {
-  //     console.error("Error:", error);
-  //   }
-  //   navigate("/TravelsCards");
-  // };
 
   return (
     <div className="text-center d-flex flex-column container-driver">
@@ -61,7 +37,7 @@ const Driver = ({ data, isLoading }) => {
 };
 
 Driver.propTypes = {
-  driver: PropTypes.array,
+  data: PropTypes.array,
   isLoading: PropTypes.bool,
 };
 

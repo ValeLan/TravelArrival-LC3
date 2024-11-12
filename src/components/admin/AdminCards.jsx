@@ -1,53 +1,38 @@
-import { useState } from 'react';
 import PropTypes from "prop-types";
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import "./Admin.css"
 
-const AdminCards = ({ data, data2, data3, data4 }) => {
-  const [selectedCard, setSelectedCard] = useState(null);
-
-  const cardConfig = {
-    data: { title: "Conductores", subtitle: "Esta es una lista de los conductores", content: data },
-    data2: { title: "Escuelas", subtitle: "Esta es una lista de las escuelas", content: data2 },
-    data3: { title: "Pasajeros", subtitle: "Esta es una lista de los pasajeros", content: data3 },
-    data4: { title: "Viajes", subtitle: "Esta es una lista de los viajes", content: data4 },};
-
-  const renderCardContent = () => {
-    if (!selectedCard || selectedCard.length === 0) {
-      return <p className="text-danger">Error: {"Sin información"}</p>;
-    }
-    return selectedCard.map(i => (
-      <div key={i.id} className="card mb-3">
-        <div className="card-body">
-          <h5 className="card-title">{i.fullName || i.name}</h5>
-          <p>{i.description || "Información adicional"}</p>
-        </div>
-      </div>
-    ));
-  };
-
+const AdminCards = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <div className="btn-group mb-4" role="group">
-        <button type="button" style={{ backgroundColor: '#34759c' }} onClick={() => setSelectedCard(cardConfig.data.content)}>Drivers</button>
-        <button type="button" style={{ backgroundColor: '#2a7f62' }} onClick={() => setSelectedCard(cardConfig.data2.content)}>Schools</button>
-        <button type="button" style={{ backgroundColor: '#c4cf03' }} onClick={() => setSelectedCard(cardConfig.data3.content)}>Passengers</button>
-        <button type="button" style={{ backgroundColor: '#33c4ff' }} onClick={() => setSelectedCard(cardConfig.data4.content)}>Travels</button>
+        <button
+          type="button"
+          style={{ backgroundColor: "#34759c" }}
+          onClick={() => navigate("/admin-driver")}
+        >
+          Driver
+        </button>
+        <button
+          type="button"
+          style={{ backgroundColor: "#2a7f62" }}
+        >
+          Schools
+        </button>
+        <button
+          type="button"
+          style={{ backgroundColor: "#c4cf03" }}
+        >
+          Passengers
+        </button>
+        <button
+          type="button"
+          style={{ backgroundColor: "#33c4ff" }}
+        >
+          Travels
+        </button>
       </div>
-
-      {selectedCard && (
-        <div className="card" style={{ width: '18rem' }}>
-          <div className="card-body">
-            <h5 className="card-title">{Object.values(cardConfig).find(config => config.content === selectedCard).title}</h5>
-            <h6 className="card-subtitle mb-2 text-body-secondary">
-              {Object.values(cardConfig).find(config => config.content === selectedCard).subtitle}
-            </h6>
-            <div className="card-text">{renderCardContent()}
-            </div>
-            <Link to="./admin" className="card-link">Atrás</Link>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
