@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { Slide, toast, ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../services/authentication/AuthContext";
+import NavBar from "../navBar/NavBar";
 
 const TravelsCards = () => {
   const [travels, setTravels] = useState(null);
@@ -41,22 +42,19 @@ const TravelsCards = () => {
     fetchData();
   }, []);
 
-  if (isLoading) return <Spinner />;
+  //if (isLoading) return <Spinner />;
 
-  const handleInscription = (id) => {
+  const handleInscription = (travel, id) => {
     const fetchInscription = async () => {
       try {
         const response = await fetch(
-          `https://localhost:7016/api/Register/SignToTravel`,
+          `https://localhost:7016/api/Register/SignToTravel/${id}`,
           {
             method: "POST",
             headers: {
               Authorization: `Bearer ${token}`,
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({
-              id,
-            }),
           }
         );
 
@@ -64,9 +62,26 @@ const TravelsCards = () => {
           throw new Error(`${response.status}`);
         }
 
-        const jsonData = await response.json();
-        setTravels(jsonData);
-        return jsonData;
+        //const jsonData = await response.json();
+        toast.success("Inscripto correctamente...", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          transition: Slide,
+        });
+
+          setTimeout(() => {
+            navigate("/client-travel", {state: {travel}});
+          }, 1500);
+
+
+        // setTravels(jsonData);
+        // return jsonData;
       } catch (error) {
         setError(error.message);
         console.error("Error al obtener los viajes:", error);
@@ -77,26 +92,17 @@ const TravelsCards = () => {
 
     fetchInscription();
 
-    toast.success("Inscripto correctamente...", {
-      position: "top-center",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-      transition: Slide,
-    });
-    setTimeout(() => {
-      navigate("/client-travel");
-    }, 1500);
+
+
   };
 
   return (
-    <div className="text-center d-flex flex-column">
+    <>
+    <NavBar/>
+    <div className="text-center d-flex flex-column" style={{background: "#34759c"}}>
+      
       <ToastContainer />
-      <div className="title-container text-center mb-5">
+      <div className="title-container text-center mt-5 mb-5">
         <h1 className="pb-5">Seleccione el viaje</h1>
       </div>
 
@@ -143,7 +149,7 @@ const TravelsCards = () => {
                   <Button
                     className="mt-4"
                     variant="primary"
-                    onClick={() => handleInscription(travel.id)}
+                    onClick={() => handleInscription(travel, travel.id)}
                   >
                     Inscribirse
                   </Button>
@@ -154,6 +160,7 @@ const TravelsCards = () => {
         )}
       </Row>
     </div>
+    </>
   );
 };
 

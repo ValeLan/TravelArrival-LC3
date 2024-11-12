@@ -1,11 +1,10 @@
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../services/authentication/AuthContext';
 
-const usePassengerTravels = () => {
+export default function usePassengerTravels () {
   const { token } = useContext(AuthContext); 
   const [travel, setTravel] = useState(null);
   const [error, setError] = useState(null);
-
   useEffect(() => {
     const fetchTravels = async () => {
       if (!token) {
@@ -18,7 +17,7 @@ const usePassengerTravels = () => {
         const response = await fetch('https://localhost:7016/api/Passenger/MyTravels', {
           method: 'GET',
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: "Bearer " + token,
             'Content-Type': 'application/json',
           },
         });
@@ -42,5 +41,3 @@ const usePassengerTravels = () => {
 
   return { travel, error };
 };
-
-export default usePassengerTravels;
