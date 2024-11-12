@@ -85,15 +85,23 @@ const TravelsCards = () => {
       } catch (error) {
         setError(error.message);
         console.error("Error al obtener los viajes:", error);
+        toast.warning("Ya se encuentra inscripto al viaje.", {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          transition: Slide,
+        });
       } finally {
         setIsLoading(false);
       }
     };
 
     fetchInscription();
-
-
-
   };
 
   return (

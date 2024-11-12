@@ -102,7 +102,7 @@ const Login = () => {
         </Form.Group>
 
         <Form.Text className="text-dark">
-        Si no estás registrado, <a href="" onClick={() => navigate("/client")}>ingrese aquí</a>
+        Si no estás registrado, <a href="" onClick={() => navigate("/client")}>ingrese aquí</a>
         </Form.Text>
       </Form>
     </div>    
