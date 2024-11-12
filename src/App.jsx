@@ -13,7 +13,8 @@ import useFetch from './components/hooks/useFetch';
 import { AuthProvider } from './components/services/authentication/AuthContext'; 
 import TravelsCards from './components/client/TravelsCards';
 import { TravelsProvider } from './components/services/travel/TravelsContext';
-import NavBar from './components/navBar/NavBar';
+import Unauthorized from './components/routes/Unauthorized';
+import Protected from './components/routes/Protected';
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
@@ -26,16 +27,51 @@ function App() {
 
   const router = createBrowserRouter([
     { path: "/", element: <Home /> },
-    { path: "/login", element: <Login onLogin={loginHandler}/> },
+    { path: "/login", element: <Login onLogin={loginHandler} /> },
     { path: "/client", element: <ClientForm /> },
-    { path: "/admin", element: <Admin/> },
-    { path: "/driver", element: <Driver data={data} isLoading={isLoading}/> },
-    { path: "/client", element: <ClientForm/> },
-    { path: "/client-travel", element: <ClientTravel/>},
-    { path: "/details/:id", element: <DriverDetails/>,},
-    { path: "*", element: <NotFound/>},
-    { path: "/travels-cards", element: <TravelsCards/>}
- ]);
+    {
+      path: "/admin",
+      element: (
+        <Protected allowedRoles={["Admin"]}>
+          <Admin />
+        </Protected>
+      ),
+    },
+    {
+      path: "/driver",
+      element: (
+        <Protected allowedRoles={["Driver"]}>
+          <Driver data={data} isLoading={isLoading} />
+        </Protected>
+      ),
+    },
+    {
+      path: "/details/:id",
+      element: (
+        <Protected allowedRoles={["Driver"]}>
+          <DriverDetails />
+        </Protected>
+      ),
+    },
+    {
+      path: "/client-travel",
+      element: (
+        <Protected allowedRoles={["Passenger"]}>
+          <ClientTravel />
+        </Protected>
+      ),
+    },
+    {
+      path: "/travels-cards",
+      element: (
+        <Protected allowedRoles={["Passenger"]}>
+          <TravelsCards />
+        </Protected>
+      ),
+    },
+    { path: "*", element: <NotFound /> },
+    { path: "/unauthorized", element: <Unauthorized /> },
+  ]);
   return (
     <>
       <AuthProvider>
